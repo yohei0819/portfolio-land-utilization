@@ -1838,6 +1838,22 @@ main {
     --section-padding-xs: 25px;
   }
 
+  /* ヘッダー */
+  .site-header {
+    padding: 0 15px;
+  }
+
+  .header-logo a {
+    font-size: 13px;
+    gap: 8px;
+    letter-spacing: 1px;
+  }
+
+  .header-logo .logo-brand {
+    font-size: 11px;
+    letter-spacing: 2px;
+  }
+
   .hero {
     height: 70vh;
     min-height: 450px;
@@ -1845,6 +1861,11 @@ main {
 
   .hero-logo .st {
     font-size: 36px;
+  }
+
+  .hero-logo {
+    font-size: 12px;
+    letter-spacing: 5px;
   }
 
   .hero-catch {
@@ -1861,9 +1882,17 @@ main {
     width: 80px;
   }
 
+  .hero-cm a {
+    padding: 8px 10px;
+  }
+
   .section-title h2 {
     font-size: 20px;
     letter-spacing: 2px;
+  }
+
+  .section-title p {
+    font-size: 13px;
   }
 
   .feature-block__text h3 {
@@ -1889,13 +1918,108 @@ main {
     letter-spacing: 5px;
   }
 
+  /* コンセプト画像 */
+  .concept-image {
+    max-width: 100%;
+  }
+
+  /* セクション見出しバー */
+  .section-heading-bar {
+    padding: 12px 15px;
+    margin-bottom: 30px;
+  }
+
+  .section-heading-bar h3 {
+    font-size: 16px;
+    letter-spacing: 2px;
+  }
+
+  /* パフォーマンスセクション */
+  .performance-intro {
+    padding: 50px var(--content-padding);
+  }
+
+  .performance-intro h2 {
+    font-size: 20px;
+  }
+
+  .performance-section {
+    padding: 0 0 50px;
+  }
+
+  .performance-lead {
+    font-size: 14px;
+  }
+
+  .performance-sub-heading {
+    font-size: 16px;
+  }
+
+  /* テーブル */
+  .rating-table th {
+    width: 80px;
+    font-size: 12px;
+    padding: 10px 8px;
+  }
+
+  .rating-table td {
+    font-size: 12px;
+    padding: 10px;
+  }
+
+  /* 遮音バッジ */
+  .sound-badge__name {
+    font-size: 22px;
+  }
+
+  /* セキュリティ */
   .security-items {
     gap: 15px;
+  }
+
+  .security-group-title {
+    font-size: 14px;
+  }
+
+  /* 設備ブロック */
+  .equipment-block {
+    gap: 25px;
+    padding: 20px var(--content-padding) 40px;
+  }
+
+  .equipment-block__text h4 {
+    font-size: 16px;
+  }
+
+  /* 俯瞰図ラベル */
+  .floorplan-label {
+    font-size: 9px;
+    padding: 3px 6px;
+  }
+
+  .floorplan-label::after {
+    content: '';
+  }
+
+  /* フッター */
+  .footer-cta {
+    padding: 40px var(--content-padding) 30px;
+  }
+
+  .footer-cta h3 {
+    font-size: 16px;
   }
 
   .footer-cta__buttons {
     flex-direction: column;
     align-items: center;
+  }
+
+  .footer-cta__btn {
+    width: 100%;
+    justify-content: center;
+    font-size: 13px;
+    padding: 14px 20px;
   }
 
   .footer-contact__inner {
@@ -1919,16 +2043,27 @@ main {
     width: 100%;
   }
 
+  /* 数字カウンター: 2列グリッド */
+  .stats-section {
+    padding: 50px var(--content-padding);
+  }
+
   .stats-grid {
-    gap: 30px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px 20px;
+  }
+
+  .stat-item {
+    min-width: 0;
   }
 
   .stat-item__number {
-    font-size: 42px;
+    font-size: 38px;
   }
 
   .stat-item__suffix {
-    font-size: 16px;
+    font-size: 14px;
   }
 
   .brand-statement {
@@ -1938,6 +2073,7 @@ main {
   .brand-statement__quote {
     font-size: 20px;
     letter-spacing: 3px;
+    line-height: 1.8;
   }
 
   .brand-statement__content {
@@ -1959,14 +2095,46 @@ main {
     font-size: 12px;
   }
 
-  .floorplan-label {
-    font-size: 10px;
-    padding: 4px 8px;
+  /* ローディング画面 */
+  .loading-logo-text .loading-brand {
+    font-size: 26px;
+  }
+
+  .loading-logo-text {
+    font-size: 12px;
+    letter-spacing: 4px;
+  }
+
+  /* 建物バリエーション */
+  .building-variations {
+    padding: var(--section-padding-sm) 0 var(--section-padding-sm);
+  }
+
+  .variation-grid {
+    gap: 25px;
   }
 }
 
 /* --- 小型スマートフォン --- */
 @media (max-width: 480px) {
+  .site-header {
+    padding: 0 10px;
+  }
+
+  .header-logo a {
+    font-size: 12px;
+    gap: 6px;
+  }
+
+  .header-logo .logo-divider {
+    font-size: 14px;
+  }
+
+  .header-logo .logo-brand {
+    font-size: 10px;
+    letter-spacing: 1px;
+  }
+
   .hero-catch {
     font-size: 18px;
     letter-spacing: 3px;
@@ -1976,33 +2144,77 @@ main {
     font-size: 28px;
   }
 
+  .hero-logo {
+    font-size: 11px;
+    letter-spacing: 4px;
+  }
+
+  .hero-content {
+    width: 90%;
+  }
+
   .section-title h2 {
     font-size: 18px;
   }
 
+  .section-title p {
+    font-size: 12px;
+    line-height: 1.9;
+  }
+
   .page-hero-title h1 {
     font-size: 22px;
+    letter-spacing: 3px;
+  }
+
+  .page-hero-title .subtitle {
+    font-size: 12px;
+    letter-spacing: 3px;
   }
 
   .page-hero-title .page-hero-catch {
     font-size: 18px;
+    letter-spacing: 3px;
+    line-height: 1.8;
+  }
+
+  /* テーブル横スクロール */
+  .rating-table {
+    font-size: 11px;
+    display: block;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .rating-table tbody {
+    display: table;
+    width: 100%;
+    min-width: 320px;
+  }
+
+  .rating-table th {
+    width: 70px;
+    padding: 8px 6px;
+  }
+
+  .rating-table td {
+    padding: 8px;
   }
 
   .security-items {
     grid-template-columns: 1fr;
   }
 
-  .rating-table {
-    font-size: 11px;
-  }
-
-  .rating-table th,
-  .rating-table td {
-    padding: 8px 10px;
-  }
-
   .stat-item__number {
-    font-size: 36px;
+    font-size: 32px;
+  }
+
+  .stat-item__suffix {
+    font-size: 13px;
+  }
+
+  .stat-item__label {
+    font-size: 11px;
   }
 
   .brand-statement__quote {
@@ -2011,7 +2223,90 @@ main {
   }
 
   .stats-grid {
-    gap: 25px;
+    gap: 20px 15px;
+  }
+
+  /* フッター */
+  .footer-cta__btn {
+    font-size: 12px;
+    padding: 12px 15px;
+  }
+
+  .footer-contact__phone-number {
+    font-size: 22px;
+  }
+
+  /* 比較セクション */
+  .comparison {
+    gap: 20px;
+  }
+
+  .comparison__item h5 {
+    font-size: 13px;
+    letter-spacing: 1px;
+  }
+
+  .comparison__item p {
+    font-size: 12px;
+  }
+
+  /* 設備ブロック */
+  .equipment-block__text h4 {
+    font-size: 15px;
+  }
+
+  .equipment-block__text p {
+    font-size: 13px;
+  }
+
+  /* feature block */
+  .feature-block__text h3 {
+    font-size: 16px;
+  }
+
+  .feature-block__text p {
+    font-size: 13px;
+  }
+
+  /* ローディング */
+  .loading-logo-text .loading-brand {
+    font-size: 22px;
+  }
+
+  .loading-logo-text {
+    font-size: 11px;
+    letter-spacing: 3px;
+  }
+
+  /* 俯瞰図ラベル非表示（小画面ではタップしにくい） */
+  .floorplan-label {
+    font-size: 8px;
+    padding: 2px 5px;
+  }
+
+  /* パフォーマンス */
+  .performance-intro {
+    padding: 40px var(--content-padding);
+  }
+
+  .performance-intro h2 {
+    font-size: 18px;
+    letter-spacing: 2px;
+  }
+
+  .performance-section {
+    padding: 0 0 40px;
+  }
+
+  /* バッジ */
+  .badge {
+    font-size: 12px;
+    padding: 6px 14px;
+  }
+
+  /* 遮音バッジ */
+  .sound-badge__name {
+    font-size: 20px;
   }
 }
 
