@@ -83,6 +83,14 @@
   }
 
   /**
+   * スマートフォン判定（ビューポート幅 768px 以下）
+   * @returns {boolean}
+   */
+  function isMobile() {
+    return window.innerWidth <= 768;
+  }
+
+  /**
    * ランダムな範囲値を返すヘルパー
    * @param {number} min
    * @param {number} max
@@ -266,7 +274,7 @@
 
   function initSakuraAnimation() {
     const $container = $('.sakura-container');
-    if ($container.length === 0 || prefersReducedMotion()) return;
+    if ($container.length === 0 || prefersReducedMotion() || isMobile()) return;
 
     // GSAP が有効な場合は gsap-animations.js 側で制御するためスキップ
     if (document.documentElement.classList.contains('gsap-ready')) return;

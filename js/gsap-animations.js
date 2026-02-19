@@ -27,8 +27,20 @@
     return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   }
 
-  // モーション抑制が有効な場合、全GSAP処理をスキップ
-  if (prefersReducedMotion()) {
+  /**
+   * スマートフォン判定（ビューポート幅 768px 以下）
+   * スマホではアニメーションを無効化しパフォーマンスを優先する
+   * @returns {boolean}
+   */
+  function isMobile() {
+    return window.innerWidth <= 768;
+  }
+
+  /**
+   * アニメーションスキップ時の共通フォールバック処理
+   * 非表示要素を即座に表示し、カウンターを最終値で表示する
+   */
+  function applyFallback() {
     // フォールバック：非表示要素を即座に表示
     document.querySelectorAll('.fade-in').forEach(function (el) {
       el.style.opacity = '1';
@@ -42,6 +54,34 @@
         ? target.toFixed(1)
         : Math.round(target).toLocaleString();
     });
+    // ヒーロー要素を即座に表示
+    document.querySelectorAll('.hero-content, .page-hero-title, .hero-cm').forEach(function (el) {
+      el.style.opacity = '1';
+      el.style.transform = 'none';
+    });
+    // テキスト分割の初期非表示を解除
+    document.querySelectorAll('.split-text .line-inner').forEach(function (el) {
+      el.style.opacity = '1';
+      el.style.transform = 'none';
+    });
+    // セクション装飾ラインを表示
+    document.querySelectorAll('.section-divider__line').forEach(function (el) {
+      el.style.transform = 'scaleX(1)';
+    });
+    document.querySelectorAll('.section-divider__ornament').forEach(function (el) {
+      el.style.transform = 'rotate(45deg) scale(1)';
+    });
+  }
+
+  // モーション抑制が有効な場合、全GSAP処理をスキップ
+  if (prefersReducedMotion()) {
+    applyFallback();
+    return;
+  }
+
+  // スマートフォンではアニメーションを無効化
+  if (isMobile()) {
+    applyFallback();
     return;
   }
 

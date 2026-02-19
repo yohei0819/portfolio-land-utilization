@@ -28,6 +28,14 @@
   }
 
   /**
+   * スマートフォン判定（ビューポート幅 768px 以下）
+   * @returns {boolean}
+   */
+  function isMobile() {
+    return window.innerWidth <= 768;
+  }
+
+  /**
    * GSAP が利用可能かどうかを判定
    * @returns {boolean}
    */
@@ -184,8 +192,8 @@
       window.dispatchEvent(new CustomEvent('loadingComplete'));
     }
 
-    // モーション抑制時は即完了
-    if (prefersReducedMotion()) {
+    // モーション抑制時またはスマホでは即完了
+    if (prefersReducedMotion() || isMobile()) {
       completeLoading();
       return;
     }
@@ -343,7 +351,7 @@
    * 1文字ずつグレー→ゴールドに変化させる
    */
   function initTextScrollGradient() {
-    if (!hasScrollTrigger() || prefersReducedMotion()) return;
+    if (!hasScrollTrigger() || prefersReducedMotion() || isMobile()) return;
 
     const quoteEl = document.querySelector('.brand-statement__quote');
     if (!quoteEl) return;

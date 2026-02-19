@@ -2443,6 +2443,87 @@ body.is-loading {
 }
 
 /* ============================================
+   28-b. スマートフォン - アニメーション無効化
+   スマホではアニメーションを無効化しパフォーマンスを優先する
+   JS 側でも isMobile() で制御するが、CSS でもフォールバックを提供
+   ============================================ */
+@media (max-width: 768px) {
+  /* CSS アニメーション・トランジションの無効化 */
+  .fade-in {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+
+  .hero-content,
+  .page-hero-title,
+  .hero-cm {
+    opacity: 1 !important;
+    transform: translate(-50%, -50%) !important;
+    animation: none !important;
+  }
+
+  .page-hero-title {
+    transform: none !important;
+  }
+
+  /* GSAP マスクリビール無効化 */
+  .reveal-mask__overlay {
+    display: none !important;
+  }
+
+  .reveal-mask img {
+    transform: none !important;
+  }
+
+  /* テキスト分割の初期非表示を解除 */
+  .split-text .line-inner {
+    transform: none !important;
+    opacity: 1 !important;
+  }
+
+  /* フローティングCTAの初期変形を解除 */
+  .floating-cta {
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: none !important;
+    transition: none !important;
+  }
+
+  /* セクション装飾ラインの表示 */
+  .section-divider__line {
+    transform: scaleX(1) !important;
+  }
+
+  .section-divider__ornament {
+    transform: rotate(45deg) scale(1) !important;
+  }
+
+  /* ローディングスクリーン非表示 */
+  .loading-screen {
+    display: none !important;
+  }
+
+  body.is-loading {
+    overflow: visible !important;
+  }
+
+  /* 桜アニメーション無効化 */
+  .sakura-petal {
+    animation: none !important;
+    display: none !important;
+  }
+
+  /* パララックス無効化 */
+  .hero-bg,
+  .parallax-bg,
+  .brand-statement__bg,
+  .interstitial__bg {
+    transform: none !important;
+  }
+}
+
+/* ============================================
    29. テキストスクロールグラデーション
    ============================================ */
 
