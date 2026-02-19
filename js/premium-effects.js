@@ -98,7 +98,9 @@
    * ScrollTrigger と自動連携し、スクロール位置を同期
    */
   function initLenis() {
-    if (typeof Lenis === 'undefined' || prefersReducedMotion()) return;
+    // タッチデバイスではネイティブの慣性スクロールが十分なため
+    // Lenis を無効化し、ScrollTrigger との競合を防止
+    if (typeof Lenis === 'undefined' || prefersReducedMotion() || isTouchDevice()) return;
 
     const cfg = CONFIG.lenis;
 

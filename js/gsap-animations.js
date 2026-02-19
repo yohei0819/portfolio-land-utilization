@@ -15,6 +15,10 @@
 
   gsap.registerPlugin(ScrollTrigger);
 
+  // モバイルのアドレスバー表示/非表示によるビューポート変動で
+  // ScrollTrigger の位置計算がずれるのを防止
+  ScrollTrigger.config({ ignoreMobileResize: true });
+
   /**
    * prefers-reduced-motion を確認
    * @returns {boolean}
@@ -867,6 +871,13 @@
     initCounterAnimation();
     initDividerAnimation();
     initSakuraAnimation();
+
+    // 画像等の遅延リソース読み込み後に ScrollTrigger の位置を再計算
+    // モバイルでは画像読み込みによるレイアウトシフトが起きやすく、
+    // DOMContentLoaded 時点の位置計算がずれている可能性がある
+    window.addEventListener('load', function () {
+      ScrollTrigger.refresh();
+    });
   }
 
   // DOM Ready
