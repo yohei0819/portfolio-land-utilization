@@ -31,74 +31,9 @@
   };
 
   /* ------------------------------------------
-     1. ユーティリティ
+     1. 共通ユーティリティの参照（utils.js から取得）
      ------------------------------------------ */
-
-  /**
-   * スクロールイベントのスロットリング
-   * 最後の呼び出しも確実に実行する trailing edge 付き
-   * @param {Function} fn - 実行する関数
-   * @param {number} wait - 間隔（ms）
-   * @returns {Function}
-   */
-  function throttle(fn, wait) {
-    let lastTime = 0;
-    let timerId = null;
-    // trailing edge で「最後の呼び出し」の引数を使うため
-    // 毎回上書きして最新値を保持する
-    let lastArgs = null;
-    let lastThis = null;
-    return function () {
-      const now = Date.now();
-      const remaining = wait - (now - lastTime);
-      lastArgs = arguments;
-      lastThis = this;
-
-      if (remaining <= 0) {
-        clearTimeout(timerId);
-        timerId = null;
-        lastTime = now;
-        fn.apply(lastThis, lastArgs);
-        lastArgs = lastThis = null;
-      } else if (!timerId) {
-        // trailing edge: 最後のイベントを確実に処理
-        // ※ arrow function は外側の lastArgs/lastThis を参照するため
-        //    タイマー発火時に最新の値が使われる
-        timerId = setTimeout(() => {
-          lastTime = Date.now();
-          timerId = null;
-          fn.apply(lastThis, lastArgs);
-          lastArgs = lastThis = null;
-        }, remaining);
-      }
-    };
-  }
-
-  /**
-   * prefers-reduced-motion を確認
-   * @returns {boolean}
-   */
-  function prefersReducedMotion() {
-    return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  }
-
-  /**
-   * スマートフォン判定（ビューポート幅 768px 以下）
-   * @returns {boolean}
-   */
-  function isMobile() {
-    return window.innerWidth <= 768;
-  }
-
-  /**
-   * ランダムな範囲値を返すヘルパー
-   * @param {number} min
-   * @param {number} max
-   * @returns {number}
-   */
-  function randomRange(min, max) {
-    return Math.random() * (max - min) + min;
-  }
+  const { throttle, prefersReducedMotion, isMobile, randomRange } = window.AppUtils;
 
   /* ------------------------------------------
      2. ナビゲーション - アクティブ状態

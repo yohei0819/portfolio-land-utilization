@@ -19,33 +19,35 @@
   // ScrollTrigger の位置計算がずれるのを防止
   ScrollTrigger.config({ ignoreMobileResize: true });
 
-  /**
-   * prefers-reduced-motion を確認
-   * @returns {boolean}
-   */
-  function prefersReducedMotion() {
-    return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  }
+  const { prefersReducedMotion, isMobile } = window.AppUtils;
 
-  /**
-   * スマートフォン判定（ビューポート幅 768px 以下）
-   * スマホではアニメーションを無効化しパフォーマンスを優先する
-   * @returns {boolean}
-   */
-  function isMobile() {
-    return window.innerWidth <= 768;
-  }
+  /** アニメーション対象要素のフォールバックスタイル定義 */
+  const FALLBACK_STYLES = [
+    {
+      selector: '.fade-in, .hero-content, .page-hero-title, .hero-cm, .split-text .line-inner',
+      styles: { opacity: '1', transform: 'none' }
+    },
+    {
+      selector: '.section-divider__line',
+      styles: { transform: 'scaleX(1)' }
+    },
+    {
+      selector: '.section-divider__ornament',
+      styles: { transform: 'rotate(45deg) scale(1)' }
+    }
+  ];
 
   /**
    * アニメーションスキップ時の共通フォールバック処理
    * 非表示要素を即座に表示し、カウンターを最終値で表示する
    */
   function applyFallback() {
-    // フォールバック：非表示要素を即座に表示
-    document.querySelectorAll('.fade-in').forEach(function (el) {
-      el.style.opacity = '1';
-      el.style.transform = 'none';
+    FALLBACK_STYLES.forEach(function (rule) {
+      document.querySelectorAll(rule.selector).forEach(function (el) {
+        Object.assign(el.style, rule.styles);
+      });
     });
+
     // カウンターを最終値で即座に表示
     document.querySelectorAll('.stat-item__value[data-count]').forEach(function (el) {
       const target = parseFloat(el.getAttribute('data-count'));
@@ -53,23 +55,6 @@
       el.textContent = target % 1 !== 0
         ? target.toFixed(1)
         : Math.round(target).toLocaleString();
-    });
-    // ヒーロー要素を即座に表示
-    document.querySelectorAll('.hero-content, .page-hero-title, .hero-cm').forEach(function (el) {
-      el.style.opacity = '1';
-      el.style.transform = 'none';
-    });
-    // テキスト分割の初期非表示を解除
-    document.querySelectorAll('.split-text .line-inner').forEach(function (el) {
-      el.style.opacity = '1';
-      el.style.transform = 'none';
-    });
-    // セクション装飾ラインを表示
-    document.querySelectorAll('.section-divider__line').forEach(function (el) {
-      el.style.transform = 'scaleX(1)';
-    });
-    document.querySelectorAll('.section-divider__ornament').forEach(function (el) {
-      el.style.transform = 'rotate(45deg) scale(1)';
     });
   }
 

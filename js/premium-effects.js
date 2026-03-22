@@ -8,48 +8,9 @@
   'use strict';
 
   /* ------------------------------------------
-     0. 共通ユーティリティ
+     0. 共通ユーティリティの参照（utils.js から取得）
      ------------------------------------------ */
-
-  /**
-   * prefers-reduced-motion を確認
-   * @returns {boolean}
-   */
-  function prefersReducedMotion() {
-    return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  }
-
-  /**
-   * タッチデバイスかどうかを判定
-   * @returns {boolean}
-   */
-  function isTouchDevice() {
-    return 'ontouchstart' in window || navigator.maxTouchPoints > 0;
-  }
-
-  /**
-   * スマートフォン判定（ビューポート幅 768px 以下）
-   * @returns {boolean}
-   */
-  function isMobile() {
-    return window.innerWidth <= 768;
-  }
-
-  /**
-   * GSAP が利用可能かどうかを判定
-   * @returns {boolean}
-   */
-  function hasGsap() {
-    return typeof gsap !== 'undefined';
-  }
-
-  /**
-   * GSAP + ScrollTrigger が利用可能かどうかを判定
-   * @returns {boolean}
-   */
-  function hasScrollTrigger() {
-    return hasGsap() && typeof ScrollTrigger !== 'undefined';
-  }
+  const { prefersReducedMotion, isTouchDevice, isMobile, hasGsap, hasScrollTrigger } = window.AppUtils;
 
   /* ------------------------------------------
      1. 設定値（CONFIG）
